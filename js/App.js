@@ -121,15 +121,21 @@ class ChatApp {
     }
 
     _getApiKey() {
-        this.apiKey = localStorage.getItem('hf_api_key');
-        if (!this.apiKey) {
-            this.apiKey = prompt('Por favor, introduce tu API Key de Hugging Face (se guardará localmente):');
+        this.apiKey = import.meta.env.VITE_HUGGING_FACE_API_KEY || localStorage.getItem('hf_api_key_local');
+        
+        // Si estamos en local y no hay clave, la pedimos.
+        if (!this.apiKey && window.location.hostname === 'localhost') {
+            this.apiKey = prompt('DEVELOPMENT: Introduce tu API Key de Hugging Face (se guardará localmente):');
             if (this.apiKey) {
-                localStorage.setItem('hf_api_key', this.apiKey);
+                localStorage.setItem('hf_api_key_local', this.apiKey);
             }
         }
-    }
 
+        if (!this.apiKey) {
+            console.error("API Key no encontrada. Asegúrate de configurarla en las variables de entorno de Vercel.");
+        }
+    }
+    
     _saveState() {
         localStorage.setItem('chatAppState', JSON.stringify(this.state));
     }
