@@ -15,7 +15,7 @@
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
     
-    <script src="js/app.js" defer></script>
+    <script src="js/app.js" type="module" defer></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +46,7 @@
             </div>
         </aside>
 
-        <main class="flex-1 flex flex-col bg-gray-900 overflow-hidden">
+        <main class="flex-1 flex flex-col bg-gray-900 overflow-hidden relative">
             <header class="flex items-center justify-between p-4 border-b border-gray-800 flex-shrink-0">
                 <div class="flex items-center gap-2">
                     <button id="menu-toggle-button" class="p-2 rounded-md hover:bg-gray-800 md:hidden">
@@ -83,6 +83,17 @@
                 </div>
             </div>
 
+            <div id="scroll-nav-buttons" class="absolute bottom-28 right-6 hidden z-10">
+                <div class="flex flex-col items-center gap-2 bg-gray-900/80 backdrop-blur-sm border border-gray-700/50 rounded-full p-1">
+                    <button id="scroll-up-btn" class="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                    </button>
+                    <button id="scroll-down-btn" class="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
             <div class="px-4 pt-4 pb-10 md:p-6 bg-gray-900 border-t border-gray-800 flex-shrink-0">
                 <form id="chat-form" class="relative">
                     <textarea id="user-input" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-4 pr-16 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow duration-200" placeholder="Escribe tu mensaje..." rows="1"></textarea>
@@ -114,7 +125,6 @@
                         <span>Máximo de Tokens</span>
                         <span id="max-tokens-value" class="font-bold text-indigo-400">2048</span>
                     </label>
-                    <!-- ENHANCEMENT: Increased max token limit -->
                     <input id="max-tokens-slider" type="range" min="100" max="8192" step="100" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
                 </div>
                 <div>
