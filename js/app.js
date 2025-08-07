@@ -34,7 +34,7 @@ class ChatApp {
             if (e.target === this.uiManager.dom.settings.modal) this.uiManager.toggleSettingsModal(false);
         });
         
-        this.uiManager.dom.settings.fontSizeOptions.addEventListener('click', this._handleFontSizeChange.bind(this));
+        this.uiManager.dom.settings.fontSize.slider.addEventListener('input', this._handleFontSizeChange.bind(this));
         this.uiManager.dom.settings.maxTokens.slider.addEventListener('input', this._handleMaxTokensChange.bind(this));
         this.uiManager.dom.settings.showThoughtsToggle.addEventListener('change', this._handleShowThoughtsChange.bind(this));
 
@@ -125,14 +125,12 @@ class ChatApp {
 
     _prepareApiPayload() {
         const activeChat = this.stateManager.getActiveChat();
-        const settings = this.stateManager.getSettings();
         const messages = [{ role: 'system', content: activeChat.systemPrompt }];
         messages.push(...activeChat.messages.map(({ role, content }) => ({ role, content })));
         
         return {
             model: "openai/gpt-oss-120b:novita", 
             messages, 
-            max_tokens: settings.maxTokens,
             stream: true 
         };
     }
@@ -317,11 +315,9 @@ class ChatApp {
     }
 
     _handleFontSizeChange(e) {
-        const button = e.target.closest('button[data-size]');
-        if (button) {
-            this.stateManager.updateSettings({ fontSize: button.dataset.size });
-            this.uiManager.applySettings(this.stateManager.getSettings());
-        }
+        const newSize = parseInt(e.target.value, 10);
+        this.stateManager.updateSettings({ fontSize: newSize });
+        this.uiManager.applySettings(this.stateManager.getSettings());
     }
 
     _handleMaxTokensChange(e) {

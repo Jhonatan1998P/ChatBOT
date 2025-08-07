@@ -29,7 +29,10 @@ export default class UIManager {
                 modal: document.getElementById('settings-modal'),
                 openButton: document.getElementById('settings-button'),
                 closeButton: document.getElementById('close-settings-button'),
-                fontSizeOptions: document.getElementById('font-size-options'),
+                fontSize: {
+                    slider: document.getElementById('font-size-slider'),
+                    value: document.getElementById('font-size-value'),
+                },
                 maxTokens: {
                     slider: document.getElementById('max-tokens-slider'),
                     value: document.getElementById('max-tokens-value'),
@@ -269,14 +272,18 @@ export default class UIManager {
     }
 
     applySettings(settings) {
-        const fontSizes = ['text-sm', 'text-base', 'text-lg'];
-        this.dom.appContainer.classList.remove(...fontSizes);
-        this.dom.appContainer.classList.add(settings.fontSize);
+        const sizeValue = parseInt(settings.fontSize, 10);
+        const sizeMap = {
+            1: { name: 'Pequeño', px: '13px' },
+            2: { name: 'Normal', px: '14px' },
+            3: { name: 'Mediano', px: '16px' },
+            4: { name: 'Grande', px: '18px' },
+            5: { name: 'Enorme', px: '20px' },
+        };
         
-        this.dom.settings.fontSizeOptions.querySelectorAll('button').forEach(btn => {
-            btn.classList.remove('bg-indigo-600', 'bg-gray-700');
-            btn.classList.add(btn.dataset.size === settings.fontSize ? 'bg-indigo-600' : 'bg-gray-700');
-        });
+        this.dom.appContainer.style.fontSize = sizeMap[sizeValue]?.px || '16px';
+        this.dom.settings.fontSize.slider.value = sizeValue;
+        this.dom.settings.fontSize.value.textContent = sizeMap[sizeValue]?.name || 'Mediano';
 
         this.dom.settings.maxTokens.slider.value = settings.maxTokens;
         this.dom.settings.maxTokens.value.textContent = settings.maxTokens;

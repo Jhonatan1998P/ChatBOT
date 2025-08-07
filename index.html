@@ -113,12 +113,11 @@
             </div>
             <div class="space-y-6">
                 <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Tamaño de Fuente</label>
-                    <div id="font-size-options" class="flex items-center gap-2">
-                        <button data-size="text-sm" class="px-3 py-1 rounded-md bg-gray-700 hover:bg-gray-600">Pequeño</button>
-                        <button data-size="text-base" class="px-3 py-1 rounded-md bg-indigo-600 hover:bg-indigo-500">Normal</button>
-                        <button data-size="text-lg" class="px-3 py-1 rounded-md bg-gray-700 hover:bg-gray-600">Grande</button>
-                    </div>
+                    <label for="font-size-slider" class="flex justify-between text-sm font-medium text-gray-300 mb-2">
+                        <span>Tamaño de Fuente</span>
+                        <span id="font-size-value" class="font-bold text-indigo-400">Normal</span>
+                    </label>
+                    <input id="font-size-slider" type="range" min="1" max="5" step="1" value="3" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
                 </div>
                 <div>
                     <label for="max-tokens-slider" class="flex justify-between text-sm font-medium text-gray-300 mb-2">

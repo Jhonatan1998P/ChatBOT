@@ -9,7 +9,7 @@ export default class StateManager {
             chats: {},
             activeChatId: null,
             settings: {
-                fontSize: 'text-base',
+                fontSize: 3,
                 maxTokens: 2048,
                 showThoughts: false,
             },
