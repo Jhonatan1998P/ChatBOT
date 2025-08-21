@@ -23,11 +23,11 @@
 </head>
 <body class="bg-gray-950 text-gray-200 font-sans antialiased text-base p-0 md:p-4 h-screen overflow-hidden">
 
-    <div id="app-container" class="flex h-full w-full bg-gray-900 md:rounded-2xl overflow-hidden shadow-2xl relative">
+    <div id="app-container" class="flex h-full max-h-screen w-full max-w-full bg-gray-900 md:rounded-2xl overflow-hidden shadow-2xl relative">
         
         <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-20 hidden md:hidden"></div>
 
-        <aside id="sidebar" class="bg-gray-950 w-72 flex-shrink-0 flex flex-col p-4 fixed md:static md:translate-x-0 h-full z-30 transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <aside id="sidebar" class="bg-gray-950 w-72 max-w-[80vw] flex-shrink-0 flex flex-col p-4 fixed md:static md:translate-x-0 h-full max-h-screen z-30 transform -translate-x-full transition-transform duration-300 ease-in-out">
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-xl font-bold text-white">Mis Chats</h1>
                 <button id="new-chat-button" aria-label="Nuevo Chat" class="p-2 rounded-md hover:bg-gray-800 transition-colors duration-200">
@@ -46,36 +46,36 @@
             </div>
         </aside>
 
-        <main class="flex-1 flex flex-col bg-gray-900 overflow-hidden relative">
-            <header class="flex items-center justify-between p-4 border-b border-gray-800 flex-shrink-0">
-                <div class="flex items-center gap-2">
-                    <button id="menu-toggle-button" class="p-2 rounded-md hover:bg-gray-800 md:hidden">
+        <main class="flex-1 flex flex-col bg-gray-900 overflow-hidden relative min-w-0 w-full">
+            <header class="flex items-center justify-between p-2 sm:p-4 border-b border-gray-800 flex-shrink-0 min-h-0">
+                <div class="flex items-center gap-1 sm:gap-2 min-w-0 flex-1">
+                    <button id="menu-toggle-button" class="p-2 rounded-md hover:bg-gray-800 md:hidden flex-shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
                     </button>
-                    <div class="flex items-center gap-2 md:gap-4">
-                        <h2 id="chat-title" class="text-lg font-semibold text-white truncate max-w-[120px] sm:max-w-[200px] md:max-w-none"></h2>
-                        <span id="token-count" class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded-md">Tokens: 0</span>
+                    <div class="flex items-center gap-1 sm:gap-2 md:gap-4 min-w-0 flex-1">
+                        <h2 id="chat-title" class="text-sm sm:text-lg font-semibold text-white truncate min-w-0 flex-1"></h2>
+                        <span id="token-count" class="text-xs bg-gray-800 text-gray-400 px-1 sm:px-2 py-1 rounded-md flex-shrink-0 hidden xs:block">Tokens: 0</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <button id="toggle-system-prompt-button" aria-label="Definir personalidad" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-200">
+                <div class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                    <button id="toggle-system-prompt-button" aria-label="Definir personalidad" class="p-1.5 sm:p-2 rounded-full hover:bg-gray-800 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-cog"><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m21.7 16.4-.9-.3"/><path d="m15.2 13.9-.9-.3"/><path d="m16.6 18.7.3-.9"/><path d="m19.1 12.2.3-.9"/><path d="m19.5 17.3-.3.9"/><path d="m16.8 12.9-.3.9"/><path d="m21.25 15.25.75.75"/><path d="M14.75 18.25.75.75"/></svg>
                     </button>
-                    <button id="settings-button" aria-label="Ajustes del chat" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-200">
+                    <button id="settings-button" aria-label="Ajustes del chat" class="p-1.5 sm:p-2 rounded-full hover:bg-gray-800 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                     </button>
                 </div>
             </header>
 
-            <div id="system-prompt-container" class="p-4 bg-gray-900 border-b border-gray-800 hidden">
+            <div id="system-prompt-container" class="p-2 sm:p-4 bg-gray-900 border-b border-gray-800 hidden">
                 <label for="system-prompt-input" class="block text-sm font-medium text-gray-300 mb-2">Personalidad de la IA</label>
-                <div class="flex flex-col sm:flex-row items-center gap-3">
-                    <input type="text" id="system-prompt-input" class="w-full sm:flex-grow bg-gray-800 border border-gray-700 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow duration-200" placeholder="Ej: Eres un poeta del siglo de oro...">
-                    <button id="save-system-prompt-button" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-colors duration-200">Guardar</button>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+                    <input type="text" id="system-prompt-input" class="w-full sm:flex-grow bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow duration-200" placeholder="Ej: Eres un poeta del siglo de oro...">
+                    <button id="save-system-prompt-button" class="w-full sm:w-auto px-3 sm:px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-colors duration-200">Guardar</button>
                 </div>
             </div>
             
-            <div id="chat-log" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-8"></div>
+            <div id="chat-log" class="flex-1 overflow-y-auto p-2 sm:p-4 md:p-6 space-y-4 sm:space-y-6 md:space-y-8 min-h-0"></div>
             
             <div id="typing-indicator" class="px-4 md:px-6 pb-2 h-6 hidden flex-shrink-0">
                 <div class="flex items-center gap-2">
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div id="scroll-nav-buttons" class="absolute bottom-28 right-6 hidden z-10">
+            <div id="scroll-nav-buttons" class="absolute bottom-20 sm:bottom-28 right-2 sm:right-6 hidden z-10">
                 <div class="flex flex-col items-center gap-2 bg-gray-900/80 backdrop-blur-sm border border-gray-700/50 rounded-full p-1">
                     <button id="scroll-up-btn" class="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
@@ -94,19 +94,19 @@
                 </div>
             </div>
 
-            <div class="px-4 pt-4 pb-10 md:p-6 bg-gray-900 border-t border-gray-800 flex-shrink-0">
-                <form id="chat-form" class="relative">
-                    <textarea id="user-input" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-4 pr-16 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow duration-200" placeholder="Escribe tu mensaje..." rows="1"></textarea>
-                    <button type="submit" aria-label="Enviar mensaje" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-colors duration-200 disabled:bg-gray-600 disabled:cursor-not-allowed">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <div class="px-2 sm:px-4 pt-2 sm:pt-4 pb-4 sm:pb-6 md:pb-10 md:px-6 bg-gray-900 border-t border-gray-800 flex-shrink-0">
+                <form id="chat-form" class="relative max-w-full">
+                    <textarea id="user-input" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 sm:p-4 pr-12 sm:pr-16 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow duration-200 text-sm sm:text-base max-h-32 overflow-y-auto" placeholder="Escribe tu mensaje..." rows="1"></textarea>
+                    <button type="submit" aria-label="Enviar mensaje" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 sm:p-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-colors duration-200 disabled:bg-gray-600 disabled:cursor-not-allowed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     </button>
                 </form>
             </div>
         </main>
     </div>
 
-    <div id="settings-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-        <div class="bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-sm mx-4">
+    <div id="settings-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 rounded-lg shadow-xl p-4 sm:p-6 w-full max-w-sm max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-lg font-semibold text-white">Ajustes de Visualización</h3>
                 <button id="close-settings-button" class="p-1 rounded-full text-gray-400 hover:bg-gray-700 hover:text-white">&times;</button>
